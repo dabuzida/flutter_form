@@ -1,0 +1,27 @@
+-Form은 다양한 form fields들을 각각 인증하게 도와주면서 그룹핑 
+            >> Form은 부모, form fields은 자손 구조여야함
+
+-validator() 함수를 이용하여 입력값들이(id, pw 등등)
+ 유효한지 인증할수있음
+    1.입력값이 유효하지 않으면 >> 에러메시지를 가진 String을 반환.
+    2.에러가 없다면 >> null을 반환 해야 함.
+
+-FormState 클래스는 validate() method를 가짐.
+// final _formKey = GlobalKey<FormState>(); >> _formKey.currentState!.validate()
+Form위젯에 FormState를 이용한 key를 사용하면,
+     =
+버튼 위젯을 구현해 누를시, 이 validate()를 호출하게
+할수 있다. // if (_formKey.currentState!.validate()) {
+
+-validate()의 호출은 Form위젯이 그룹핑하는 모든 form fields의 validator()를 실행시킴
+
+-validator()의 return은 String, null 두가지
+    1.String일 경우: 인증에 실패한 경우를 다루고, 입력한 String이 출력됨 
+    2.null일 경우: 인증에 성공한 경우를 다룸 
+
+-Form 위젯 내의 모든 form fields의 validator()들이 각각 String or null을 반환하는데
+    1.전부 null일 경우: validate()는 true 반환
+    2.그 이외의 경우: validate()는 false 반환
+
+
+
