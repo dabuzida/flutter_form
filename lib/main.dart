@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form/sign_up.dart';
 
 import 'formm.dart';
 import 'formm2.dart';
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
           centerTitle: true,
         ),
         // backgroundColor: Colors.greenAccent[100],
-        body: const Formm(),
+        body: const SignUp(),
+        // body: const Formm(),
         // body: const Formm2(),
         // body: const Formm3(),
         // body: const TextFormFieldd(),
