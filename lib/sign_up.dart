@@ -10,15 +10,18 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final ScrollController _scrollController = ScrollController();
+
   final TextEditingController _controllerId = TextEditingController();
   final TextEditingController _controllerPw = TextEditingController();
   final TextEditingController _controllerNumber = TextEditingController();
 
-// 리스트는 저장이 어떻게 되길래 final 추천이 뜨지
   final List<Map<String, String>> _listAccount = [];
   final List<String> _number = [];
   bool _obscure = true;
-  Icon _icon = Icon(Icons.visibility);
+  final Icon _visibilityOn = const Icon(Icons.visibility); // 비밀번호 보이게
+  final Icon _visibilityOff = const Icon(Icons.visibility_off); // 비밀번호 점으로 표시
+  Icon? _icon;
 
   @override
   void initState() {
@@ -26,11 +29,13 @@ class _SignUpState extends State<SignUp> {
     // _controllerId.text = 'money';
     _controllerPw.text = '1234qwer';
     _controllerNumber.text = '01055330022';
+    _icon = _visibilityOff;
   }
 
   @override
   Widget build(BuildContext context) {
     return ListView(
+      controller: _scrollController,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 50),
@@ -45,11 +50,12 @@ class _SignUpState extends State<SignUp> {
                     Expanded(
                       flex: 4,
                       child: TextFormField(
+                        // inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[ㄱ-ㅎㅏ-ㅣ가-힣]'))],
                         inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-z0-9]'))],
                         controller: _controllerId,
                         decoration: const InputDecoration(hintText: '영문 시작, 숫자 가능, 4~20자'),
                         validator: (value) {
-                          RegExp regExp = RegExp('^[a-z][a-z0-9]{3,20}');
+                          RegExp regExp = RegExp('^[a-z][a-z0-9]{3,19}\$');
                           if (value?.isEmpty ?? true) {
                             // 입력을 안했을때
                             return '아이디를 입력해 주세요';
@@ -81,18 +87,18 @@ class _SignUpState extends State<SignUp> {
                             onPressed: () {
                               if (_obscure == true) {
                                 _obscure = false;
-                                _icon = Icon(Icons.visibility_off);
+                                _icon = _visibilityOn;
                               } else {
                                 _obscure = true;
-                                _icon = Icon(Icons.visibility);
+                                _icon = _visibilityOff;
                               }
                               setState(() {});
                             },
-                            icon: _icon,
+                            icon: _icon!,
                           ),
                         ),
                         validator: (value) {
-                          RegExp regExp = RegExp('[a-z0-9`~!@#\$%^&*()-_=+[\\]{}\\|;\':",./<>?]{8,20}');
+                          RegExp regExp = RegExp('^[a-z0-9`~!@#\$%^&*()-_=+[\\]{}\\|;\':",./<>?]{8,20}\$');
                           if (value?.isEmpty ?? true) {
                             // 입력을 안했을때
                             return '비밀번호를 입력해 주세요';
@@ -119,10 +125,15 @@ class _SignUpState extends State<SignUp> {
                         controller: _controllerNumber,
                         // decoration: const InputDecoration(hintText: ''),
                         validator: (value) {
+                          // RegExp regExp = RegExp('^[0-9]{9}\$|^[0-9]{11}\$');
                           if (value?.isEmpty ?? true) {
                             // 입력을 안했을때
                             return '전화번호를 입력해 주세요';
-                          } else {
+                          }
+                          // else if (regExp.hasMatch(value!)) {
+                          //   return null;
+                          // }
+                          else {
                             // 통과시
                             return null; // 통과시 null 반환 >> validate()에서 종합할때, null을 성공으로 인식
                           }
