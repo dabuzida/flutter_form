@@ -78,6 +78,7 @@ class _SignUpState extends State<SignUp> {
                     Expanded(
                       flex: 4,
                       child: TextFormField(
+                        // focusNode:  ,
                         inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-z0-9`~!@#\$%^&*()-_=+[\\]{}\\|;\':",./<>?]'))],
                         obscureText: _obscure,
                         controller: _controllerPw,
