@@ -27,15 +27,15 @@ class MyApp extends StatelessWidget {
           centerTitle: true,
         ),
         // backgroundColor: Colors.greenAccent[100],
-        body: Button(
-            x: 180,
-            callback: ({required String name, required int age}) {
-              print('clicked callback');
-              print(name);
-              print(age);
-              return 11;
-            }),
-        // body: const SignUp(),
+        // body: Button(
+        //     x: 180,
+        //     callback: ({required String name, required int age}) {
+        //       print('clicked callback');
+        //       print(name);
+        //       print(age);
+        //       return 11;
+        //     }),
+        body: const SignUp(),
         // body: const Formm(),
         // body: const Formm2(),
         // body: const Formm3(),
