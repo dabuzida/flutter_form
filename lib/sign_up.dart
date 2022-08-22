@@ -18,7 +18,7 @@ class _SignUpState extends State<SignUp> {
 
   final List<Map<String, String>> _listAccount = [];
   final List<String> _number = [];
-  bool _obscure = true;
+  bool _obscure = false;
   final Icon _visibilityOn = const Icon(Icons.visibility); // 비밀번호 보이게
   final Icon _visibilityOff = const Icon(Icons.visibility_off); // 비밀번호 점으로 표시
   Icon? _icon;
@@ -61,7 +61,7 @@ class _SignUpState extends State<SignUp> {
                             return '아이디를 입력해 주세요';
                           } else if (regExp.hasMatch(value!)) {
                             // 통과시
-                            return null; // 통과시 null 반환 >> validate()에서 종합할때, null을 성공으로 인식
+                            return null;
                           } else {
                             // 그외 실패
                             return '영문 시작, 숫자 가능, 4~20자';
@@ -78,8 +78,9 @@ class _SignUpState extends State<SignUp> {
                     Expanded(
                       flex: 4,
                       child: TextFormField(
-                        // focusNode:  ,
-                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-z0-9`~!@#\$%^&*()-_=+[\\]{}\\|;\':",./<>?]'))],
+                        // inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9`~!@#\$%^&*()-_=+[\\]{}\\|;\':",./<>?]'))],
+                        // \\w : a-zA-Z0-9_
+                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[\\w`~!@#\$%^&*()-=+[\\]{}|;\':",./<>?]'))],
                         obscureText: _obscure,
                         controller: _controllerPw,
                         decoration: InputDecoration(
