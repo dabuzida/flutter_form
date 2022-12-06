@@ -150,6 +150,9 @@ class _SignUpState extends State<SignUp> {
                   child: ElevatedButton(
                     child: const Text('계정 생성 시도'),
                     onPressed: () {
+                      print('>>> ${_controllerId.text}');
+                      print(_controllerId.text.length);
+                      print(_controllerId.text.runtimeType);
                       print('pressed!');
                       if (_formKey.currentState!.validate()) {
                         _listAccount.add({_controllerId.text: _controllerPw.text});
