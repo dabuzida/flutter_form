@@ -73,10 +73,9 @@ class _MyFormState extends State<MyForm> {
                   child: ElevatedButton(
                     child: const Text('계정 생성 시도'),
                     onPressed: () {
-                      print('>>> ${_controllerId.text}');
-                      print(_controllerId.text.length);
-                      print(_controllerId.text.runtimeType);
-                      print('pressed!');
+                      print(_formKey);
+                      print(_formKey.currentState);
+                      print(_formKey.currentState!.validate());
                       if (_formKey.currentState!.validate()) {
                         setState(() {});
                       }
@@ -111,6 +110,20 @@ class _MyFormState extends State<MyForm> {
                   )
               ],
             ),
+          ),
+        ),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            child: const Text('계정 생성 시도'),
+            onPressed: () {
+              print(_formKey);
+              print(_formKey.currentState);
+              print(_formKey.currentState!.validate());
+              if (_formKey.currentState!.validate()) {
+                setState(() {});
+              }
+            },
           ),
         ),
       ],
