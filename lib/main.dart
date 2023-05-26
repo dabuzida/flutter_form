@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form/button.dart';
+import 'package:flutter_form/email_validation.dart';
 import 'package:flutter_form/sign_up.dart';
 
 import 'formm.dart';
@@ -37,8 +38,9 @@ class MyApp extends StatelessWidget {
         //       print(age);
         //       return 11;
         //     }),
+        body: const EmailValidation(),
         // body: const MyForm(),
-        body: MyForm2(),
+        // body: MyForm2(),
         // body: const SignUp(),
         // body: const Formm(),
         // body: const Formm2(),

@@ -59,6 +59,10 @@ class MyForm2 extends StatelessWidget {
                   child: const Text('계정 생성 시도'),
                   onPressed: () {},
                 ),
+                buildUIRadioButton(title: 'title', checked: true),
+                buildUIRadioButton(title: 'title', checked: true),
+                buildUIRadioButton(title: 'title', checked: true),
+                buildUIRadioButton(title: 'title', checked: true),
               ],
             ),
             // ElevatedButton(
@@ -66,6 +70,51 @@ class MyForm2 extends StatelessWidget {
             //   autofocus: false,
             //   onPressed: () {},
             // ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildUIRadioButton({
+    required String title,
+    required bool checked,
+    void Function()? onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            IgnorePointer(
+              child: Radio<bool>(
+                fillColor: MaterialStateColor.resolveWith(
+                  (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.selected)) {
+                      return const Color(0xFF00CBD2);
+                    }
+
+                    return const Color(0xFF959595);
+                  },
+                ),
+                splashRadius: 0.0,
+                visualDensity: const VisualDensity(
+                  horizontal: VisualDensity.minimumDensity,
+                  vertical: VisualDensity.minimumDensity,
+                ),
+                groupValue: true,
+                value: checked,
+                onChanged: (bool? newValue) {},
+              ),
+            ),
+            Text(
+              title,
+              style: TextStyle(
+                color: checked ? const Color(0xFF00CBD2) : const Color(0xFF959595),
+              ),
+            ),
           ],
         ),
       ),
