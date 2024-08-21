@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form/button.dart';
 import 'package:flutter_form/email_validation.dart';
+import 'package:flutter_form/my_text_form_filed.dart';
 import 'package:flutter_form/sign_up.dart';
 
 import 'formm.dart';
@@ -29,16 +30,8 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.teal,
           centerTitle: true,
         ),
-        // backgroundColor: Colors.greenAccent[100],
-        // body: Button(
-        //     x: 180,
-        //     callback: ({required String name, required int age}) {
-        //       print('clicked callback');
-        //       print(name);
-        //       print(age);
-        //       return 11;
-        //     }),
-        body: const EmailValidation(),
+        body: const MyTextFormField(),
+        // body: const EmailValidation(),
         // body: const MyForm(),
         // body: MyForm2(),
         // body: const SignUp(),
